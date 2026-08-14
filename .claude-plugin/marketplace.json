@@ -1,0 +1,14 @@
+{
+  "name": "edgaze",
+  "owner": {
+    "name": "Edge Platforms, Inc.",
+    "email": "hello@edgaze.ai"
+  },
+  "plugins": [
+    {
+      "name": "edgaze",
+      "source": "./",
+      "description": "Find and run Edgaze marketplace workflows from chat. Paste https://mcp.edgaze.ai, sign in, then search and run."
+    }
+  ]
+}
