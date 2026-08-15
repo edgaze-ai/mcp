@@ -1,11 +1,12 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "edgaze",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Find and run Edgaze marketplace workflows from chat. Paste https://mcp.edgaze.ai, sign in, then search and run.",
   "author": {
     "name": "Edge Platforms, Inc.",
-    "email": "hello@edgaze.ai"
+    "email": "hello@edgaze.ai",
+    "url": "https://www.edgaze.ai"
   },
   "homepage": "https://www.edgaze.ai/docs/mcp",
   "repository": "https://github.com/edgaze-ai/mcp",

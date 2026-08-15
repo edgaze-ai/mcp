@@ -1,7 +1,7 @@
-# Claude
+# Claude Code
 
-Add Edgaze as a remote MCP server:
+```bash
+claude mcp add --transport http edgaze https://mcp.edgaze.ai --scope user
+```
 
-`https://mcp.edgaze.ai`
-
-Approve access at https://www.edgaze.ai/oauth/consent when Claude opens the consent page. Then ask Claude to search Edgaze and run a workflow.
+Claude Code needs `"type": "http"` in a file. The client starts OAuth. Do not open `/oauth/consent` yourself. Full playbook: [docs/clients.md](../docs/clients.md).
