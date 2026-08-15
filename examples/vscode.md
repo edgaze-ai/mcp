@@ -1,7 +1,16 @@
 # VS Code
 
-In Copilot MCP settings, add a remote server pointing at:
+`.vscode/mcp.json`. The top-level key is `servers`:
 
-`https://mcp.edgaze.ai`
+```json
+{
+  "servers": {
+    "edgaze": {
+      "type": "http",
+      "url": "https://mcp.edgaze.ai"
+    }
+  }
+}
+```
 
-Sign in at https://www.edgaze.ai/oauth/consent when prompted. Then ask Copilot to inspect a slug before it runs anything.
+Switch Copilot Chat to Agent mode. The client starts OAuth. Do not open `/oauth/consent` yourself. Full playbook: [docs/clients.md](../docs/clients.md).

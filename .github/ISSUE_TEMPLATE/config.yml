@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Connect and first run
+    url: https://www.edgaze.ai/docs/mcp
+    about: Install and use Edgaze MCP from a client.
+  - name: Security report
+    url: https://github.com/edgaze-ai/mcp/security/policy
+    about: Email security@edgaze.ai. Do not file a public issue.
+  - name: Manifest change
+    url: https://github.com/edgaze-ai/mcp/blob/main/CONTRIBUTING.md
+    about: Open a pull request. This repository does not take implementation code.

@@ -3,12 +3,25 @@
   "name": "ai.edgaze/mcp",
   "title": "Edgaze",
   "description": "Find and run Edgaze marketplace workflows from chat.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "websiteUrl": "https://www.edgaze.ai/docs/mcp",
   "repository": {
     "url": "https://github.com/edgaze-ai/mcp",
-    "source": "github"
+    "source": "github",
+    "id": "1333920943"
   },
+  "icons": [
+    {
+      "src": "https://www.edgaze.ai/brand/icons/icon-192x192.png",
+      "mimeType": "image/png",
+      "sizes": ["192x192"]
+    },
+    {
+      "src": "https://www.edgaze.ai/brand/icons/icon-48x48.png",
+      "mimeType": "image/png",
+      "sizes": ["48x48"]
+    }
+  ],
   "remotes": [
     {
       "type": "streamable-http",
