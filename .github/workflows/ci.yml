@@ -27,8 +27,8 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install ajv-cli
-        run: npm install --global ajv-cli@5.0.0 ajv-formats@3.0.1
+      - name: Install validators
+        run: npm install --global ajv-cli@5.0.0 ajv-formats@3.0.1 @anthropic-ai/claude-code@2.1.299
 
       - name: Validate manifests
         run: scripts/validate.sh

@@ -1,14 +1,18 @@
 {
   "name": "edgaze",
+  "description": "Official Edgaze plugin for Claude Code: find and run Edgaze marketplace workflows from chat.",
   "owner": {
     "name": "Edge Platforms, Inc.",
-    "email": "hello@edgaze.ai"
+    "email": "hello@edgaze.ai",
+    "url": "https://www.edgaze.ai"
   },
   "plugins": [
     {
       "name": "edgaze",
       "source": "./",
-      "description": "Find and run Edgaze marketplace workflows from chat. Paste https://mcp.edgaze.ai, sign in, then search and run."
+      "description": "Find and run Edgaze marketplace workflows from chat. Search published AI workflows, check price and inputs, then run a demo or a paid run.",
+      "category": "productivity",
+      "tags": ["mcp", "workflows", "marketplace", "automation"]
     }
   ]
 }

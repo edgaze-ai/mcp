@@ -5,3 +5,4 @@ keys/
 *.pem
 *.key
 .ci-schemas/
+.DS_Store
