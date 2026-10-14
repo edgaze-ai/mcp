@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1 - 2026-10-14
+
+Clear the plugin directory's lint warnings and policy hold. The listing icon is found at its default path, so no manifest names an image file, and the Cursor manifest uses the hosted logo. `plugin.json` sets only `privacyPolicyUrl` among the listing fields; terms, support, and documentation links are in the README. The README adds example prompts and troubleshooting. The Claude app section of the client docs uses a custom connector, since `claude_desktop_config.json` does not configure remote servers.
+
 ## 1.2.0 - 2026-10-14
 
 Prepare the Claude plugin directory listing. Add a 1024 px listing icon (the mark on white) and the privacy policy, terms, support, and documentation URLs. Load the MCP server from `.mcp.json` only. Move the Cursor manifest to `.cursor-plugin/plugin.json` so Claude no longer finds an unused root `plugin.json`. Add the plugin install line to the README. CI runs `claude plugin validate --strict`.

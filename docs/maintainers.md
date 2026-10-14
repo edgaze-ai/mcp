@@ -27,9 +27,11 @@ Stop there unless you intend to publish a new immutable version.
 
 ## Claude plugin directory
 
-The plugin is the repository root. `.claude-plugin/plugin.json` holds the listing fields (`icon`, `privacyPolicyUrl`, `termsOfServiceUrl`, `supportUrl`, `documentationUrl`), and `.mcp.json` is the only MCP server declaration. Do not add `mcpServers` to `plugin.json`. Claude Code loads `.mcp.json` first and then merges the manifest's servers, and a manifest entry with the same server name silently replaces the `.mcp.json` entry.
+The plugin is the repository root. `.claude-plugin/plugin.json` sets one listing field, `privacyPolicyUrl`, and `.mcp.json` is the only MCP server declaration. Terms, support, and documentation links live in the README: each optional listing field in `plugin.json` adds a portal warning. Do not add `mcpServers` to `plugin.json`. Claude Code loads `.mcp.json` first and then merges the manifest's servers, and a manifest entry with the same server name silently replaces the `.mcp.json` entry.
 
-The listing icon is the file named by `icon` in the Claude manifest: a square PNG, 512 to 2048 px, under 2 MB. The directory reads it once, the first time the plugin is saved or submitted. Replacing the file later does not change the listing.
+The listing icon is the PNG at the directory's default location in `.claude-plugin/`: square, 512 to 2048 px, under 2 MB. The directory reads it once, the first time the plugin is saved or submitted. Replacing the file later does not change the listing.
+
+Never name the icon, or any bundled image, in a manifest, script, or doc. The directory holds a version for review when anything it can follow from a script reaches an image file. The Cursor manifest uses the hosted logo on www.edgaze.ai for the same reason. `scripts/validate.sh` fails on a bundled image path in any text file.
 
 ```bash
 claude plugin validate --strict .
