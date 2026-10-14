@@ -71,12 +71,17 @@ for key in ("name", "description", "author", "homepage", "repository", "license"
     if claude.get(key) != cursor.get(key):
         fail(f"{key} differs between .claude-plugin/plugin.json and .cursor-plugin/plugin.json")
 
-# Claude plugin directory listing fields.
-for key in ("privacyPolicyUrl", "termsOfServiceUrl", "supportUrl", "documentationUrl"):
-    if not str(claude.get(key, "")).startswith("https://www.edgaze.ai/"):
-        fail(f".claude-plugin/plugin.json {key} must be an https://www.edgaze.ai/ URL")
-if "mcpServers" in claude:
-    fail(".claude-plugin/plugin.json must not declare mcpServers; .mcp.json is the only declaration")
+# Claude plugin directory listing. The directory finds the listing icon at its default
+# path in .claude-plugin/, so no manifest names it: a manifest that names an image, read
+# by this script, holds every version for review. Listing fields other than
+# privacyPolicyUrl each add a portal warning, so the README carries those links instead.
+if not str(claude.get("privacyPolicyUrl", "")).startswith("https://www.edgaze.ai/"):
+    fail(".claude-plugin/plugin.json privacyPolicyUrl must be an https://www.edgaze.ai/ URL")
+for key in ("icon", "documentationUrl", "supportUrl", "termsOfServiceUrl", "mcpServers"):
+    if key in claude:
+        fail(f".claude-plugin/plugin.json must not set {key}")
+if not str(cursor.get("logo", "")).startswith("https://www.edgaze.ai/"):
+    fail(".cursor-plugin/plugin.json logo must be an https://www.edgaze.ai/ URL, not a path in this repository")
 
 entries = [entry for entry in marketplace.get("plugins", []) if entry.get("name") == claude.get("name")]
 if len(entries) != 1 or entries[0].get("source") != "./":
@@ -84,20 +89,16 @@ if len(entries) != 1 or entries[0].get("source") != "./":
 if entries[0].get("description") != claude.get("description"):
     fail("marketplace.json plugin description must match .claude-plugin/plugin.json")
 
-def png_size(path):
-    data = path.read_bytes()
-    if data[:8] != b"\x89PNG\r\n\x1a\n" or data[12:16] != b"IHDR":
-        fail(f"{path} is not a PNG")
-    return int.from_bytes(data[16:20], "big"), int.from_bytes(data[20:24], "big"), len(data)
-
-icon = (root / claude.get("icon", "")).resolve()
-if not claude.get("icon") or icon.parent != (root / ".claude-plugin").resolve() or not icon.is_file():
-    fail(".claude-plugin/plugin.json icon must name a file inside .claude-plugin/")
-width, height, size = png_size(icon)
-if width != height or not (512 <= width <= 2048) or size >= 2 * 1024 * 1024:
-    fail(f"icon must be a square PNG, 512 to 2048 px, under 2 MB (got {width}x{height}, {size} bytes)")
-if (root / cursor.get("logo", "")).resolve() != icon:
-    fail(".cursor-plugin/plugin.json logo must be the same file as the Claude icon")
+# No text file may name a bundled image; the directory holds a version for review when one does.
+image_path = re.compile(r"[\w./-]+\.(?:png|jpe?g|gif|webp|svg|ico)\b", re.I)
+for path in sorted(root.rglob("*")):
+    if ".git" in path.parts or "schemas" in path.parts or not path.is_file():
+        continue
+    if path.suffix.lower() in {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".ico"}:
+        continue
+    for match in image_path.findall(path.read_text(errors="ignore")):
+        if not match.startswith(("https://", "//")) and "://" not in match:
+            fail(f"{path} names an image file ({match}); link a hosted URL instead")
 
 if server.get("name") != "ai.edgaze/mcp":
     fail("server.json name must be ai.edgaze/mcp")

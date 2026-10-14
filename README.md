@@ -26,6 +26,13 @@ claude plugin install edgaze --marketplace edgaze-ai/mcp
 
 Run `/mcp`, pick `edgaze`, and sign in when the browser opens.
 
+## Example prompts
+
+- "What kinds of workflows can I run on Edgaze?"
+- "Find an Edgaze workflow that writes a cold outreach email, and show me its price and the inputs it needs."
+- "Run a free demo of that workflow for my company, Acme Analytics, if it has one."
+- "Run it for real with a $2 ceiling and give me the email it writes."
+
 ## Connect another client
 
 Add a remote HTTP server named `edgaze` and point it at `https://mcp.edgaze.ai`.
@@ -56,13 +63,27 @@ The plugin contains one MCP server declaration and one skill. It runs no local c
 - **Spends:** a paid run is charged to your Edgaze wallet, never above the `max_cost_usd` ceiling the agent sets. Demos never bill. The skill tells the agent to read the price first and hide nothing about it.
 - **Acts elsewhere:** some workflows act on your own connected accounts, such as Slack or GitHub. `edgaze_inspect` lists these before you run.
 
+## Troubleshooting
+
+- **No Edgaze tools in Claude Code.** Run `/mcp` and sign in to `edgaze`. A server you add by hand needs `"type": "http"`, or Claude Code skips it.
+- **No Edgaze tools on claude.ai or Claude Desktop.** The connector is missing or off. Add it under **Customize → Connectors → + Add → Add custom connector** with the URL `https://mcp.edgaze.ai`. If it is already added, open **+ → Connectors** in the chat and turn it on.
+- **Consent says it is missing a sign-in request.** The consent page was opened by hand. Use the client's Connect or Sign in control instead.
+- **A run asks for money.** The install worked. Add funds at [https://www.edgaze.ai/wallet](https://www.edgaze.ai/wallet) and run again.
+
+More fixes: [Connect Edgaze MCP](https://www.edgaze.ai/docs/mcp/connect#troubleshooting).
+
 ## After a run
 
 Text and external actions come back in the chat. Images, video, and files come back as a link to the hosted run page: `https://www.edgaze.ai/run/{id}`.
 
 ## Privacy and security
 
-Sign-in is browser OAuth against Edgaze. The plugin stores no credentials. Privacy policy: [https://www.edgaze.ai/docs/privacy-policy](https://www.edgaze.ai/docs/privacy-policy). Terms: [https://www.edgaze.ai/docs/terms-of-service](https://www.edgaze.ai/docs/terms-of-service). Support: [https://www.edgaze.ai/help](https://www.edgaze.ai/help).
+Sign-in is browser OAuth against Edgaze. The plugin stores no credentials.
+
+- Privacy policy: [https://www.edgaze.ai/docs/privacy-policy](https://www.edgaze.ai/docs/privacy-policy)
+- Terms of service: [https://www.edgaze.ai/docs/terms-of-service](https://www.edgaze.ai/docs/terms-of-service)
+- Documentation: [https://www.edgaze.ai/docs/mcp](https://www.edgaze.ai/docs/mcp)
+- Support: [https://www.edgaze.ai/help](https://www.edgaze.ai/help) or `hello@edgaze.ai`
 
 Report vulnerabilities to `security@edgaze.ai`. See [SECURITY.md](SECURITY.md).
 
@@ -71,7 +92,7 @@ Report vulnerabilities to `security@edgaze.ai`. See [SECURITY.md](SECURITY.md).
 | File | Purpose |
 | --- | --- |
 | `server.json` | Official MCP registry entry (`ai.edgaze/mcp`) |
-| `.claude-plugin/` / `.mcp.json` | Claude Code plugin, marketplace, and listing icon |
+| `.claude-plugin/` / `.mcp.json` | Claude Code plugin, marketplace, and directory listing |
 | `.cursor-plugin/` / `mcp.json` | Cursor plugin |
 | `skills/edgaze/SKILL.md` | How the agent should search, inspect, run, and show results |
 

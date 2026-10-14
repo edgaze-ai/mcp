@@ -41,21 +41,11 @@ Or `.mcp.json` at the repository root:
 
 Claude Code skips a remote server that has a `url` and no `type`.
 
-## Claude Desktop
+## Claude app (claude.ai and Claude Desktop)
 
-`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS:
+Open **Customize → Connectors**, click **+ Add**, then **Add custom connector**. Name it `Edgaze` and enter `https://mcp.edgaze.ai`. Leave client id and secret empty. `claude_desktop_config.json` does not configure remote servers. If the tools are missing in a chat, open **+ → Connectors** and turn Edgaze on.
 
-```json
-{
-  "mcpServers": {
-    "edgaze": {
-      "url": "https://mcp.edgaze.ai"
-    }
-  }
-}
-```
-
-For claude.ai, Cowork, and mobile, add a custom connector at `https://mcp.edgaze.ai`. Leave client id and secret empty.
+On mobile, add the connector on claude.ai or Claude Desktop first. It then appears in the mobile app, where you turn it on per chat.
 
 ## Codex
 
