@@ -1,6 +1,6 @@
 {
   "name": "edgaze",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Find and run Edgaze marketplace workflows from chat. Search published AI workflows, check price and inputs, then run a demo or a paid run.",
   "author": {
     "name": "Edge Platforms, Inc.",

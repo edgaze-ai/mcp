@@ -73,13 +73,14 @@ for key in ("name", "description", "author", "homepage", "repository", "license"
 
 # Claude plugin directory listing. The directory finds the listing icon at its default
 # path in .claude-plugin/, so no manifest names it: a manifest that names an image, read
-# by this script, holds every version for review. Listing fields other than
-# privacyPolicyUrl each add a portal warning, so the README carries those links instead.
-if not str(claude.get("privacyPolicyUrl", "")).startswith("https://www.edgaze.ai/"):
-    fail(".claude-plugin/plugin.json privacyPolicyUrl must be an https://www.edgaze.ai/ URL")
-for key in ("icon", "documentationUrl", "supportUrl", "termsOfServiceUrl", "mcpServers"):
+# by this script, holds every version for review. Every listing field in plugin.json
+# raises a portal warning, and the directory takes the privacy policy URL from the
+# README, so the README carries the listing links instead.
+for key in ("icon", "privacyPolicyUrl", "documentationUrl", "supportUrl", "termsOfServiceUrl", "mcpServers", "metadata"):
     if key in claude:
         fail(f".claude-plugin/plugin.json must not set {key}")
+if "https://www.edgaze.ai/docs/privacy-policy" not in (root / "README.md").read_text():
+    fail("README.md must link https://www.edgaze.ai/docs/privacy-policy; the directory reads the privacy policy URL from it")
 if not str(cursor.get("logo", "")).startswith("https://www.edgaze.ai/"):
     fail(".cursor-plugin/plugin.json logo must be an https://www.edgaze.ai/ URL, not a path in this repository")
 

@@ -1,7 +1,7 @@
 {
   "name": "edgaze",
   "displayName": "Edgaze",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Find and run Edgaze marketplace workflows from chat. Search published AI workflows, check price and inputs, then run a demo or a paid run.",
   "author": {
     "name": "Edge Platforms, Inc.",
@@ -11,6 +11,5 @@
   "homepage": "https://www.edgaze.ai/docs/mcp",
   "repository": "https://github.com/edgaze-ai/mcp",
   "license": "MIT",
-  "keywords": ["mcp", "edgaze", "workflows", "marketplace", "automation"],
-  "privacyPolicyUrl": "https://www.edgaze.ai/docs/privacy-policy"
+  "keywords": ["mcp", "edgaze", "workflows", "marketplace", "automation"]
 }
