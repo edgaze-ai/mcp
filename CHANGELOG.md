@@ -2,7 +2,7 @@
 
 ## 1.2.0 - 2026-10-14
 
-Prepare the Claude plugin directory listing. Add a 1024 px listing icon and the privacy policy, terms, support, and documentation URLs. Load the MCP server from `.mcp.json` only. Move the Cursor manifest to `.cursor-plugin/plugin.json` so Claude no longer finds an unused root `plugin.json`. Add the plugin install line to the README. CI runs `claude plugin validate --strict`.
+Prepare the Claude plugin directory listing. Add a 1024 px listing icon (the mark on white) and the privacy policy, terms, support, and documentation URLs. Load the MCP server from `.mcp.json` only. Move the Cursor manifest to `.cursor-plugin/plugin.json` so Claude no longer finds an unused root `plugin.json`. Add the plugin install line to the README. CI runs `claude plugin validate --strict`.
 
 ## 1.1.0 - 2026-08-15
 
