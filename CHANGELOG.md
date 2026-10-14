@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.2 - 2026-10-14
+
+Remove `privacyPolicyUrl` from `plugin.json`. The plugin directory reads the privacy policy URL from the README, so the field only added a warning. Directory validation now reports no warnings.
+
 ## 1.2.1 - 2026-10-14
 
 Clear the plugin directory's lint warnings and policy hold. The listing icon is found at its default path, so no manifest names an image file, and the Cursor manifest uses the hosted logo. `plugin.json` sets only `privacyPolicyUrl` among the listing fields; terms, support, and documentation links are in the README. The README adds example prompts and troubleshooting. The Claude app section of the client docs uses a custom connector, since `claude_desktop_config.json` does not configure remote servers.

@@ -3,7 +3,7 @@
   "name": "ai.edgaze/mcp",
   "title": "Edgaze",
   "description": "Find and run Edgaze marketplace workflows from chat.",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "websiteUrl": "https://www.edgaze.ai/docs/mcp",
   "repository": {
     "url": "https://github.com/edgaze-ai/mcp",
