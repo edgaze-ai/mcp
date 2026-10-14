@@ -1,19 +1,20 @@
 {
   "name": "edgaze",
-  "version": "1.1.0",
-  "description": "Find and run Edgaze marketplace workflows from chat. Paste https://mcp.edgaze.ai, sign in, then search and run.",
+  "displayName": "Edgaze",
+  "version": "1.2.0",
+  "description": "Find and run Edgaze marketplace workflows from chat. Search published AI workflows, check price and inputs, then run a demo or a paid run.",
   "author": {
     "name": "Edge Platforms, Inc.",
-    "email": "hello@edgaze.ai"
+    "email": "hello@edgaze.ai",
+    "url": "https://www.edgaze.ai"
   },
   "homepage": "https://www.edgaze.ai/docs/mcp",
   "repository": "https://github.com/edgaze-ai/mcp",
   "license": "MIT",
-  "keywords": ["mcp", "edgaze", "workflows", "marketplace"],
-  "mcpServers": {
-    "edgaze": {
-      "type": "http",
-      "url": "https://mcp.edgaze.ai"
-    }
-  }
+  "keywords": ["mcp", "edgaze", "workflows", "marketplace", "automation"],
+  "icon": "./.claude-plugin/icon.png",
+  "documentationUrl": "https://www.edgaze.ai/docs/mcp",
+  "supportUrl": "https://www.edgaze.ai/help",
+  "privacyPolicyUrl": "https://www.edgaze.ai/docs/privacy-policy",
+  "termsOfServiceUrl": "https://www.edgaze.ai/docs/terms-of-service"
 }

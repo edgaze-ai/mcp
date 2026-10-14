@@ -10,7 +10,23 @@ This repository is public manifests only. The server is hosted. There is no loca
 
 **Docs:** [https://www.edgaze.ai/docs/mcp](https://www.edgaze.ai/docs/mcp)
 
-## Connect
+## Install in Claude Code
+
+Install the plugin. It adds the MCP server and a skill that tells Claude how to search, inspect, run, and show results.
+
+```text
+/plugin install edgaze --marketplace edgaze-ai/mcp
+```
+
+From a shell:
+
+```bash
+claude plugin install edgaze --marketplace edgaze-ai/mcp
+```
+
+Run `/mcp`, pick `edgaze`, and sign in when the browser opens.
+
+## Connect another client
 
 Add a remote HTTP server named `edgaze` and point it at `https://mcp.edgaze.ai`.
 
@@ -34,17 +50,19 @@ Client configs: [docs/clients.md](docs/clients.md). The install playbook is [Con
 
 Text and external actions come back in the chat. Images, video, and files come back as a link to the hosted run page: `https://www.edgaze.ai/run/{id}`.
 
-## Security
+## Privacy and security
 
-Sign-in is browser OAuth against Edgaze. Report vulnerabilities to `security@edgaze.ai`. See [SECURITY.md](SECURITY.md).
+Sign-in is browser OAuth against Edgaze. The plugin stores no credentials. Privacy policy: [https://www.edgaze.ai/docs/privacy-policy](https://www.edgaze.ai/docs/privacy-policy). Terms: [https://www.edgaze.ai/docs/terms-of-service](https://www.edgaze.ai/docs/terms-of-service). Support: [https://www.edgaze.ai/help](https://www.edgaze.ai/help).
+
+Report vulnerabilities to `security@edgaze.ai`. See [SECURITY.md](SECURITY.md).
 
 ## Repository
 
 | File | Purpose |
 | --- | --- |
 | `server.json` | Official MCP registry entry (`ai.edgaze/mcp`) |
-| `plugin.json` / `mcp.json` | Agent Plugins (Cursor and other plugin hosts) |
-| `.claude-plugin/` / `.mcp.json` | Claude Code plugin and marketplace files |
+| `.claude-plugin/` / `.mcp.json` | Claude Code plugin, marketplace, and listing icon |
+| `.cursor-plugin/` / `mcp.json` | Cursor plugin |
 | `skills/edgaze/SKILL.md` | How the agent should search, inspect, run, and show results |
 
 Implementation is not accepted here. Changes to the hosted server happen in the Edgaze product.
