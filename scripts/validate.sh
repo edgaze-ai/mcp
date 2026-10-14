@@ -139,7 +139,9 @@ for name in (
         print(f"skills/edgaze/SKILL.md is missing {name}", file=sys.stderr)
         sys.exit(1)
 
-forbidden_url = re.compile(r"https?://(?!www\.edgaze\.ai|mcp\.edgaze\.ai|github\.com/edgaze-ai|static\.modelcontextprotocol\.io|cursor\.com|chatgpt\.com|claude\.ai|claude\.com|code\.claude\.com)[^\s)\"']+", re.I)
+allowed_hosts = r"www\.edgaze\.ai|mcp\.edgaze\.ai|github\.com/edgaze-ai|static\.modelcontextprotocol\.io|cursor\.com|chatgpt\.com|claude\.ai|claude\.com|code\.claude\.com"
+# The boundary after the host stops look-alikes such as www.edgaze.ai.evil.com from passing.
+forbidden_url = re.compile(rf"https?://(?!(?:{allowed_hosts})(?:[/:?#)\]`\"'\s]|$))[^\s)\"']+", re.I)
 text_roots = [
     root / "README.md",
     root / "SECURITY.md",
