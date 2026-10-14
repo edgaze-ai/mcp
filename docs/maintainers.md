@@ -29,7 +29,7 @@ Stop there unless you intend to publish a new immutable version.
 
 The plugin is the repository root. `.claude-plugin/plugin.json` holds the listing fields (`icon`, `privacyPolicyUrl`, `termsOfServiceUrl`, `supportUrl`, `documentationUrl`), and `.mcp.json` is the only MCP server declaration. Do not add `mcpServers` to `plugin.json`: a second declaration silently replaces the first.
 
-`.claude-plugin/icon.png` is the listing icon: a square PNG, 512 to 2048 px, under 2 MB. The directory reads it once, the first time the plugin is saved or submitted. Replacing the file later does not change the listing.
+The listing icon is the file named by `icon` in the Claude manifest: a square PNG, 512 to 2048 px, under 2 MB. The directory reads it once, the first time the plugin is saved or submitted. Replacing the file later does not change the listing.
 
 ```bash
 claude plugin validate --strict .

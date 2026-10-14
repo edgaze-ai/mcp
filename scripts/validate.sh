@@ -91,13 +91,13 @@ def png_size(path):
     return int.from_bytes(data[16:20], "big"), int.from_bytes(data[20:24], "big"), len(data)
 
 icon = (root / claude.get("icon", "")).resolve()
-if icon != (root / ".claude-plugin" / "icon.png").resolve() or not icon.is_file():
-    fail(".claude-plugin/plugin.json icon must be ./.claude-plugin/icon.png")
+if not claude.get("icon") or icon.parent != (root / ".claude-plugin").resolve() or not icon.is_file():
+    fail(".claude-plugin/plugin.json icon must name a file inside .claude-plugin/")
 width, height, size = png_size(icon)
 if width != height or not (512 <= width <= 2048) or size >= 2 * 1024 * 1024:
     fail(f"icon must be a square PNG, 512 to 2048 px, under 2 MB (got {width}x{height}, {size} bytes)")
 if (root / cursor.get("logo", "")).resolve() != icon:
-    fail(".cursor-plugin/plugin.json logo must be .claude-plugin/icon.png")
+    fail(".cursor-plugin/plugin.json logo must be the same file as the Claude icon")
 
 if server.get("name") != "ai.edgaze/mcp":
     fail("server.json name must be ai.edgaze/mcp")

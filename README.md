@@ -46,6 +46,16 @@ A zero wallet is normal the first time. Add money at [https://www.edgaze.ai/wall
 
 Client configs: [docs/clients.md](docs/clients.md). The install playbook is [Connect Edgaze MCP](https://www.edgaze.ai/docs/mcp/connect).
 
+## What the plugin does
+
+The plugin contains one MCP server declaration and one skill. It runs no local code, installs no packages, and adds no hooks.
+
+- **Connects to:** `https://mcp.edgaze.ai` only, over HTTPS.
+- **Sends:** your search terms, the workflow you pick, and the inputs you give it. Edgaze runs the workflow on its servers.
+- **Signs in:** with browser OAuth on www.edgaze.ai. Claude Code stores the OAuth token. The plugin never reads or stores credentials.
+- **Spends:** a paid run is charged to your Edgaze wallet, never above the `max_cost_usd` ceiling the agent sets. Demos never bill. The skill tells the agent to read the price first and hide nothing about it.
+- **Acts elsewhere:** some workflows act on your own connected accounts, such as Slack or GitHub. `edgaze_inspect` lists these before you run.
+
 ## After a run
 
 Text and external actions come back in the chat. Images, video, and files come back as a link to the hosted run page: `https://www.edgaze.ai/run/{id}`.
