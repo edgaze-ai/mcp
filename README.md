@@ -10,7 +10,28 @@ This repository is public manifests only. The server is hosted. There is no loca
 
 **Docs:** [https://www.edgaze.ai/docs/mcp](https://www.edgaze.ai/docs/mcp)
 
-## Install in Claude Code
+## Connect
+
+Every client connects the same way: add a remote HTTP server named `edgaze` at `https://mcp.edgaze.ai`. The client starts OAuth and opens consent on [www.edgaze.ai](https://www.edgaze.ai). Approve **Find workflows** and **Run workflows**. Do not add a `command`, a bearer token, or an `Authorization` header, and do not open `/oauth/consent` yourself.
+
+### VS Code and GitHub Copilot
+
+Workspace file `.vscode/mcp.json` (or Command Palette → **MCP: Open User Configuration** for a personal one). The top-level key is `servers`, and a remote server needs `"type": "http"`:
+
+```json
+{
+  "servers": {
+    "edgaze": {
+      "type": "http",
+      "url": "https://mcp.edgaze.ai"
+    }
+  }
+}
+```
+
+Or run **MCP: Add Server**, choose **HTTP**, and enter `https://mcp.edgaze.ai`. Confirm that you trust the server, then sign in to Edgaze. Switch Copilot Chat to Agent mode; **Configure Tools** shows the Edgaze tools.
+
+### Claude Code
 
 Install the plugin. It adds the MCP server and a skill that tells Claude how to search, inspect, run, and show results.
 
@@ -26,20 +47,13 @@ claude plugin install edgaze --marketplace edgaze-ai/mcp
 
 Run `/mcp`, pick `edgaze`, and sign in when the browser opens.
 
-## Example prompts
+### Cursor, Claude app, Codex, and others
 
-- "What kinds of workflows can I run on Edgaze?"
-- "Find an Edgaze workflow that writes a cold outreach email, and show me its price and the inputs it needs."
-- "Run a free demo of that workflow for my company, Acme Analytics, if it has one."
-- "Run it for real with a $2 ceiling and give me the email it writes."
+Snippets for each client: [docs/clients.md](docs/clients.md). The full playbook with troubleshooting is [Connect Edgaze MCP](https://www.edgaze.ai/docs/mcp/connect).
 
-## Connect another client
+## Tools
 
-Add a remote HTTP server named `edgaze` and point it at `https://mcp.edgaze.ai`.
-
-Do not add a `command`, a bearer token, or an `Authorization` header. The client starts OAuth and opens consent on [www.edgaze.ai](https://www.edgaze.ai). Approve **Find workflows** and **Run workflows**. Do not open `/oauth/consent` yourself. A bare consent link has no sign-in request.
-
-After you connect, these tools should be listed:
+After you connect, these tools are listed:
 
 | Tool | Role |
 | --- | --- |
@@ -51,20 +65,26 @@ After you connect, these tools should be listed:
 
 A zero wallet is normal the first time. Add money at [https://www.edgaze.ai/wallet](https://www.edgaze.ai/wallet) when you want a paid run.
 
-Client configs: [docs/clients.md](docs/clients.md). The install playbook is [Connect Edgaze MCP](https://www.edgaze.ai/docs/mcp/connect).
+## Example prompts
 
-## What the plugin does
+- "What kinds of workflows can I run on Edgaze?"
+- "Find an Edgaze workflow that writes a cold outreach email, and show me its price and the inputs it needs."
+- "Run a free demo of that workflow for my company, Acme Analytics, if it has one."
+- "Run it for real with a $2 ceiling and give me the email it writes."
 
-The plugin contains one MCP server declaration and one skill. It runs no local code, installs no packages, and adds no hooks.
+## What it does with your data
+
+The server is hosted. The Claude plugin in this repository contains one MCP server declaration and one skill; it runs no local code, installs no packages, and adds no hooks.
 
 - **Connects to:** `https://mcp.edgaze.ai` only, over HTTPS.
 - **Sends:** your search terms, the workflow you pick, and the inputs you give it. Edgaze runs the workflow on its servers.
-- **Signs in:** with browser OAuth on www.edgaze.ai. Claude Code stores the OAuth token. The plugin never reads or stores credentials.
+- **Signs in:** with browser OAuth on www.edgaze.ai. Your client stores the OAuth token. Nothing in this repository reads or stores credentials.
 - **Spends:** a paid run is charged to your Edgaze wallet, never above the `max_cost_usd` ceiling the agent sets. Demos never bill. The skill tells the agent to read the price first and hide nothing about it.
 - **Acts elsewhere:** some workflows act on your own connected accounts, such as Slack or GitHub. `edgaze_inspect` lists these before you run.
 
 ## Troubleshooting
 
+- **No Edgaze tools in VS Code.** The config needs the top-level `servers` key and `"type": "http"`. Check that the server is started and trusted under **MCP: List Servers**, and that Copilot Chat is in Agent mode.
 - **No Edgaze tools in Claude Code.** Run `/mcp` and sign in to `edgaze`. A server you add by hand needs `"type": "http"`, or Claude Code skips it.
 - **No Edgaze tools on claude.ai or Claude Desktop.** The connector is missing or off. Add it under **Customize → Connectors → + Add → Add custom connector** with the URL `https://mcp.edgaze.ai`. If it is already added, open **+ → Connectors** in the chat and turn it on.
 - **Consent says it is missing a sign-in request.** The consent page was opened by hand. Use the client's Connect or Sign in control instead.
