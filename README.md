@@ -91,7 +91,7 @@ Report vulnerabilities to `security@edgaze.ai`. See [SECURITY.md](SECURITY.md).
 
 | File | Purpose |
 | --- | --- |
-| `server.json` | Official MCP registry entry (`ai.edgaze/mcp`) |
+| `server.json` | Official MCP registry entry (`ai.edgaze/edgaze`), published from this repository |
 | `.claude-plugin/` / `.mcp.json` | Claude Code plugin, marketplace, and directory listing |
 | `.cursor-plugin/` / `mcp.json` | Cursor plugin |
 | `skills/edgaze/SKILL.md` | How the agent should search, inspect, run, and show results |

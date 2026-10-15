@@ -101,8 +101,11 @@ for path in sorted(root.rglob("*")):
         if not match.startswith(("https://", "//")) and "://" not in match:
             fail(f"{path} names an image file ({match}); link a hosted URL instead")
 
-if server.get("name") != "ai.edgaze/mcp":
-    fail("server.json name must be ai.edgaze/mcp")
+# The published registry name. Registry names are permanent: never rename it.
+if server.get("name") != "ai.edgaze/edgaze":
+    fail("server.json name must be ai.edgaze/edgaze, the name published in the official MCP registry")
+if server.get("repository", {}).get("url") != "https://github.com/edgaze-ai/mcp" or server.get("repository", {}).get("source") != "github":
+    fail("server.json repository must be https://github.com/edgaze-ai/mcp with source github; registry consumers such as GitHub read it")
 if server.get("repository", {}).get("id") != "1333920943":
     print("server.json repository.id must be the GitHub repo id 1333920943", file=sys.stderr)
     sys.exit(1)
@@ -141,7 +144,7 @@ for name in (
         print(f"skills/edgaze/SKILL.md is missing {name}", file=sys.stderr)
         sys.exit(1)
 
-allowed_hosts = r"www\.edgaze\.ai|mcp\.edgaze\.ai|github\.com/edgaze-ai|static\.modelcontextprotocol\.io|cursor\.com|chatgpt\.com|claude\.ai|claude\.com|code\.claude\.com"
+allowed_hosts = r"www\.edgaze\.ai|mcp\.edgaze\.ai|github\.com/edgaze-ai|static\.modelcontextprotocol\.io|registry\.modelcontextprotocol\.io|cursor\.com|chatgpt\.com|claude\.ai|claude\.com|code\.claude\.com"
 # The boundary after the host stops look-alikes such as www.edgaze.ai.evil.com from passing.
 forbidden_url = re.compile(rf"https?://(?!(?:{allowed_hosts})(?:[/:?#)\]`\"'\s]|$))[^\s)\"']+", re.I)
 text_roots = [

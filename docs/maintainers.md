@@ -16,14 +16,19 @@ CI runs the same script. Schemas are vendored under `schemas/`. Refresh them onl
 
 ## Official MCP registry
 
-Prepare only. Do not publish from a script.
+The entry is `ai.edgaze/edgaze` on registry.modelcontextprotocol.io, and this repository's `server.json` is its only source. Registry names are permanent, and each version can be published once. Keep the `repository` block: GitHub's MCP Registry and other consumers read the repository from the entry.
 
-1. Generate an Ed25519 keypair with OpenSSL 3.
-2. Publish a DNS TXT record on the apex of `edgaze.ai`: `v=MCPv1; k=ed25519; p=<base64>`.
-3. `mcp-publisher login dns --domain=edgaze.ai --private-key=<hex>`
-4. `mcp-publisher validate`
+Authentication is a DNS TXT record on the apex of `edgaze.ai` (`v=MCPv1; k=ed25519; p=<base64>`). The Ed25519 private key is kept outside this repository.
 
-Stop there unless you intend to publish a new immutable version.
+To publish a new version, merge the version bump first, then from a clean `main`:
+
+```bash
+mcp-publisher validate
+mcp-publisher login dns --domain=edgaze.ai --private-key=<hex>
+mcp-publisher publish
+```
+
+Confirm the entry at `https://registry.modelcontextprotocol.io/v0/servers?search=edgaze`.
 
 ## Claude plugin directory
 

@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "ai.edgaze/mcp",
+  "name": "ai.edgaze/edgaze",
   "title": "Edgaze",
-  "description": "Find and run Edgaze marketplace workflows from chat.",
-  "version": "1.2.2",
+  "description": "Find and run AI workflows from the Edgaze marketplace in your agent. Sign in with OAuth.",
+  "version": "1.2.3",
   "websiteUrl": "https://www.edgaze.ai/docs/mcp",
   "repository": {
     "url": "https://github.com/edgaze-ai/mcp",
@@ -11,6 +11,11 @@
     "id": "1333920943"
   },
   "icons": [
+    {
+      "src": "https://www.edgaze.ai/web-app-manifest-512x512.png",
+      "mimeType": "image/png",
+      "sizes": ["512x512"]
+    },
     {
       "src": "https://www.edgaze.ai/brand/icons/icon-192x192.png",
       "mimeType": "image/png",
