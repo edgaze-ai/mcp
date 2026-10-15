@@ -18,7 +18,15 @@ CI runs the same script. Schemas are vendored under `schemas/`. Refresh them onl
 
 The entry is `ai.edgaze/edgaze` on registry.modelcontextprotocol.io, and this repository's `server.json` is its only source. Registry names are permanent, and each version can be published once. Keep the `repository` block: GitHub's MCP Registry and other consumers read the repository from the entry.
 
-Authentication is a DNS TXT record on the apex of `edgaze.ai` (`v=MCPv1; k=ed25519; p=<base64>`). The Ed25519 private key is kept outside this repository.
+Authentication is a DNS TXT record on the apex of `edgaze.ai` (`v=MCPv1; k=ed25519; p=<base64 public key>`). The matching Ed25519 private key is kept outside this repository, with Edgaze's other secrets. To set up or rotate the key (OpenSSL 3.0 or later):
+
+```bash
+openssl genpkey -algorithm Ed25519 -out mcp-registry-key.pem
+openssl pkey -in mcp-registry-key.pem -pubout -outform DER | tail -c 32 | base64
+openssl pkey -in mcp-registry-key.pem -outform DER | tail -c 32 | xxd -p -c 64
+```
+
+The second command prints the public key for the TXT record's `p=` value. The third prints the hex private key for `--private-key`. Publish the TXT record before you log in, and never commit the key.
 
 To publish a new version, merge the version bump first, then from a clean `main`:
 
