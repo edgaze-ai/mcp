@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.3 - 2026-10-15
+
+Publish the official MCP registry entry `ai.edgaze/edgaze` from this repository, with the GitHub `repository` field that GitHub's MCP Registry requires. `server.json` takes the published name and description and adds a 512 px icon. CI checks the registry name and repository.
+
 ## 1.2.2 - 2026-10-14
 
 Remove `privacyPolicyUrl` from `plugin.json`. The plugin directory reads the privacy policy URL from the README, so the field only added a warning. Directory validation now reports no warnings.
